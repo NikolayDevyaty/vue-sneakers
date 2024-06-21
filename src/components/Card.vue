@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
   title: String,
-  imgUrl: String,
+  imageUrl: String,
   price: Number,
   isFavorite: Boolean,
   isAdded: Boolean,
@@ -10,7 +10,7 @@ defineProps({
 })
 </script>
 <template>
-  <div>
+
     <div
       class="relative bg-white border border-slate-100 rounded-3xl p-8 coursor-pointer transition hover:shadow-xl hover:-translate-y-2"
     >
@@ -20,7 +20,7 @@ defineProps({
         class="absolute top-0 left-8"
         @click="onCLickFavorite"
       />
-      <img :src="imgUrl" alt="sneakers" />
+      <img :src="imageUrl" alt="sneakers" />
       <p>{{ title }}</p>
       <div class="flex justify-between mt-5">
         <div class="flex flex-col">
@@ -30,5 +30,4 @@ defineProps({
         <img :src="isAdded ? '/checked.svg' : ' /plus.svg'" alt="Plus" @click="onCLickAdded" />
       </div>
     </div>
-  </div>
 </template>
