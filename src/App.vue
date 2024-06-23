@@ -3,9 +3,9 @@ import { onMounted, reactive, ref, watch } from 'vue'
 import axios from 'axios'
 import Header from './components/Header.vue'
 import CardList from './components/CardList.vue'
-// import Drawer from './components/Drawer.vue'
+import Drawer from './components/Drawer.vue'
 const items = ref([])
-// const favorites = ref([])
+const drawerOpen = ref(true)
 const filters = reactive({
   searchQuery: '',
   sortBy: 'title'
@@ -13,6 +13,9 @@ const filters = reactive({
 const onChangeSelect = (event) => {
   filters.sortBy = event.target.value
 }
+
+const closeDrawer = () => {}
+const opendrawer = () => {}
 const onChangeSearchInput = (event) => {
   filters.searchQuery = event.target.value
 }
@@ -93,7 +96,7 @@ watch(filters, fetchItems)
 </script>
 
 <template>
-  <!-- <Drawer /> -->
+  <Drawer v-if="drawerOpen" />
   <div class="bg-white w-4/5 m-auto rounded-xl mt-14 shadow-xl">
     <Header />
     <div class="p-10">
