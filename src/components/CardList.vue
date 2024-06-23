@@ -1,5 +1,5 @@
 <script setup>
-import { inject } from 'vue'
+import { defineEmits } from 'vue'
 import Card from './Card.vue'
 
 defineProps({
@@ -9,11 +9,13 @@ defineProps({
 const onClickAdd = () => {
   alert('Добавлено в корзину')
 }
+
+const emit = defineEmits(['addToFavorite'])
 // const onCLickFavorite = () => {
 //   alert('Добавлено в избранное')
 // }
 
-const addToFavorite = inject('addToFavorite')
+// const addToFavorite = inject('addToFavorite')
 // const onCLickFavorite = () => {
 //   const obj = {
 //     ...props,
@@ -32,7 +34,7 @@ const addToFavorite = inject('addToFavorite')
       :price="item.price"
       :imageUrl="item.imageUrl"
       :onClickAdd="onClickAdd"
-      :onCLickFavorite="() => addToFavorite(item)"
+      :onCLickFavorite="() => emit('addToFavorite',item)"
       :isFavorite="item.isFavorite"
     />
   </div>
