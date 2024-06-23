@@ -1,13 +1,25 @@
 <script setup>
+import { inject } from 'vue'
 import Card from './Card.vue'
+
 defineProps({
   items: Array
+  // favorites: Array
 })
-// const onCLickAdded = () => {
-//   alert('Добавлено в корзину')
-// }
+const onClickAdd = () => {
+  alert('Добавлено в корзину')
+}
 // const onCLickFavorite = () => {
 //   alert('Добавлено в избранное')
+// }
+
+const addToFavorite = inject('addToFavorite')
+// const onCLickFavorite = () => {
+//   const obj = {
+//     ...props,
+//     parentId: props.id //patID
+//   }
+//   addToFavorite(obj)
 // }
 </script>
 <template>
@@ -15,9 +27,13 @@ defineProps({
     <Card
       v-for="item in items"
       :key="item.id"
+      :id="item.id"
       :title="item.title"
       :price="item.price"
       :imageUrl="item.imageUrl"
+      :onClickAdd="onClickAdd"
+      :onCLickFavorite="() => addToFavorite(item)"
+      :isFavorite="item.isFavorite"
     />
   </div>
 </template>
