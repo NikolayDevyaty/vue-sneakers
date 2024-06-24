@@ -4,25 +4,9 @@ import Card from './Card.vue'
 
 defineProps({
   items: Array
-  // favorites: Array
 })
-// const onClickAdd = () => {
-//   alert('Добавлено в корзину')
-// }
 
 const emit = defineEmits(['addToFavorite', 'addToCart'])
-// const onCLickFavorite = () => {
-//   alert('Добавлено в избранное')
-// }
-
-// const addToFavorite = inject('addToFavorite')
-// const onCLickFavorite = () => {
-//   const obj = {
-//     ...props,
-//     parentId: props.id //patID
-//   }
-//   addToFavorite(obj)
-// }
 </script>
 <template>
   <div class="grid grid-cols-2 gap-5">

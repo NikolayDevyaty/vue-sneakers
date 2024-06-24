@@ -106,7 +106,7 @@ const addToCart = (item) => {
   }
 }
 
-provide('cartActions', { openDrawer, closeDrawer })
+provide('cart', { cart, openDrawer, closeDrawer, addToCart })
 
 watch(filters, fetchItems)
 </script>
