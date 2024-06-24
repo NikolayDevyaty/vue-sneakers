@@ -1,11 +1,12 @@
 <script setup>
-import { onMounted, reactive, ref, watch } from 'vue'
+import { onMounted, reactive, ref, watch, provide } from 'vue'
 import axios from 'axios'
 import Header from './components/Header.vue'
 import CardList from './components/CardList.vue'
 import Drawer from './components/Drawer.vue'
 const items = ref([])
-const drawerOpen = ref(true)
+const cart = ref([])
+const drawerOpen = ref(false)
 const filters = reactive({
   searchQuery: '',
   sortBy: 'title'
@@ -14,8 +15,12 @@ const onChangeSelect = (event) => {
   filters.sortBy = event.target.value
 }
 
-const closeDrawer = () => {}
-const opendrawer = () => {}
+const closeDrawer = () => {
+  drawerOpen.value = false
+}
+const openDrawer = () => {
+  drawerOpen.value = true
+}
 const onChangeSearchInput = (event) => {
   filters.searchQuery = event.target.value
 }
@@ -90,7 +95,18 @@ onMounted(async () => {
   await fetchFavorites()
 })
 
-// provide('addToFavorite', addToFavorite)
+const addToCart = (item) => {
+  console.log(cart)
+  if (!item.isAdded) {
+    cart.value.push(item)
+    item.isAdded = true
+  } else {
+    item.isAdded = false
+    cart.value.splice(cart.value.indexOf(item), 1)
+  }
+}
+
+provide('cartActions', { openDrawer, closeDrawer })
 
 watch(filters, fetchItems)
 </script>
@@ -98,7 +114,7 @@ watch(filters, fetchItems)
 <template>
   <Drawer v-if="drawerOpen" />
   <div class="bg-white w-4/5 m-auto rounded-xl mt-14 shadow-xl">
-    <Header />
+    <Header @open-drawer="openDrawer" />
     <div class="p-10">
       <div class="flex justify-between items-center">
         <h2 class="text-3xl font-bold px-8">Все кроссовки</h2>
@@ -121,7 +137,7 @@ watch(filters, fetchItems)
         </div>
       </div>
       <div class="mt-10">
-        <CardList :items="items" @addToFavorite="addToFavorite" />
+        <CardList :items="items" @addToFavorite="addToFavorite" @addToCart="addToCart" />
       </div>
     </div>
   </div>

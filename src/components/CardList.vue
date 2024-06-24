@@ -6,11 +6,11 @@ defineProps({
   items: Array
   // favorites: Array
 })
-const onClickAdd = () => {
-  alert('Добавлено в корзину')
-}
+// const onClickAdd = () => {
+//   alert('Добавлено в корзину')
+// }
 
-const emit = defineEmits(['addToFavorite'])
+const emit = defineEmits(['addToFavorite', 'addToCart'])
 // const onCLickFavorite = () => {
 //   alert('Добавлено в избранное')
 // }
@@ -33,9 +33,10 @@ const emit = defineEmits(['addToFavorite'])
       :title="item.title"
       :price="item.price"
       :imageUrl="item.imageUrl"
-      :onClickAdd="onClickAdd"
-      :onCLickFavorite="() => emit('addToFavorite',item)"
+      :onCLickFavorite="() => emit('addToFavorite', item)"
+      :onClickAdd="() => emit('addToCart', item)"
       :isFavorite="item.isFavorite"
+      :isAdded="item.isAdded"
     />
   </div>
 </template>

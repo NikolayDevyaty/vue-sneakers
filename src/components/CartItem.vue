@@ -9,7 +9,12 @@
 
       <div class="flex justify-between mt-2">
         <b>1200 руб</b>
-        <img class="opacity-50 hover:opacity-100 coursor-pointer transition" src="/close.svg" alt="close" />
+        <img
+          emit
+          class="opacity-50 hover:opacity-100 coursor-pointer transition"
+          src="/close.svg"
+          alt="close"
+        />
       </div>
     </div>
   </div>
