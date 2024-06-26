@@ -76,7 +76,7 @@ watch(
   <div class="bg-white w-4/5 m-auto rounded-xl mt-14 shadow-xl">
     <Header :total="totalPrice" @open-drawer="openDrawer" />
     <div class="p-10">
-      <Home @add-to-cart="addToCart" />
+      <RouterView />
     </div>
   </div>
 </template>
